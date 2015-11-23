@@ -1,0 +1,57 @@
+<project name="jtixchange" default="assemble.all" basedir=".">
+
+  <property file="build.properties"/>
+
+  <target name="clean" >
+    <delete dir="${webapps}"/>
+	<mkdir dir="${webapps}"/>
+  </target>
+
+  <target name="prepare" depends="clean">
+   	<mkdir dir="${webapps}/${webapp_web_name}"/>
+	<mkdir dir="${webapps}/${webapp_web_name}/WEB-INF/lib"/>
+	<mkdir dir="${webapps}/${webapp_web_name}/WEB-INF/classes"/>
+   	<mkdir dir="${webapps}/${webapp_svc_name}"/>
+	<mkdir dir="${webapps}/${webapp_svc_name}/WEB-INF/lib"/>
+  </target>
+      	
+	<target name="assemble.web" depends="prepare">
+		<copy todir="${webapps}/${webapp_web_name}">
+			<fileset dir="${jtix_base}/${webapp_web_name}"/>	
+		</copy>
+		<copy todir="${webapps}/${webapp_web_name}/WEB-INF/lib">
+			<fileset dir="${jtix_base}/lib"/>
+		</copy>
+		<copy todir="${webapps}/${webapp_web_name}/WEB-INF/classes">
+			<fileset dir="${jtix_base}/classes"/>
+		</copy>
+	</target>
+  
+	<target name="assemble.svc">
+		<copy todir="${webapps}/${webapp_svc_name}">
+			<fileset dir="${jtix_base}/${webapp_svc_name}">
+				<exclude name="${acctsvc_name}/**"/>
+			</fileset>
+		</copy>
+		
+		<copy todir="${webapps}/${webapp_svc_name}/WEB-INF/lib">
+			<fileset dir="${jtix_base}/lib"/>
+		</copy>
+		
+		<copy todir="${webapps}/${webapp_svc_name}/WEB-INF/classes">
+			<fileset dir="${jtix_base}/classes">
+				<include name="com/jtixchange/persistence/**"/>
+				<include name="com/jtixchange/domain/**"/>
+			</fileset>
+		</copy>
+		
+		<zip destfile="${webapps}/${webapp_svc_name}/WEB-INF/services/${acctsvc_name}.aar">
+			<fileset dir="${jtix_base}/classes">
+				<include name="com/jtixchange/service/**"/>
+			</fileset>
+			<fileset dir="${jtix_base}/${webapp_svc_name}/${acctsvc_name}"/>
+		</zip>
+	</target>
+			  	
+  <target name="assemble.all" depends="prepare,assemble.web,assemble.svc" />
+</project>

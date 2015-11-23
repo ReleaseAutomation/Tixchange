@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE daoConfig
+    PUBLIC "-//iBATIS.com//DTD DAO Configuration 2.0//EN"
+    "http://www.ibatis.com/dtd/dao-2.dtd">
+
+<daoConfig>
+
+  <context>
+
+    <transactionManager type="SQLMAP">
+      <property name="SqlMapConfigResource"
+        value="com/jtixchange/persistence/sqlmapdao/sql/sql-map-config.xml"/>
+    </transactionManager>
+
+    <dao interface="com.jtixchange.persistence.iface.ItemDao"
+      implementation="com.jtixchange.persistence.sqlmapdao.ItemSqlMapDao"/>
+
+    <dao interface="com.jtixchange.persistence.iface.SequenceDao"
+      implementation="com.jtixchange.persistence.sqlmapdao.SequenceSqlMapDao"/>
+
+    <dao interface="com.jtixchange.persistence.iface.AccountDao"
+      implementation="com.jtixchange.persistence.sqlmapdao.AccountSqlMapDao"/>
+
+    <dao interface="com.jtixchange.persistence.iface.CategoryDao"
+      implementation="com.jtixchange.persistence.sqlmapdao.CategorySqlMapDao"/>
+
+    <dao interface="com.jtixchange.persistence.iface.ProductDao"
+      implementation="com.jtixchange.persistence.sqlmapdao.ProductSqlMapDao"/>
+
+    <dao interface="com.jtixchange.persistence.iface.OrderDao"
+      implementation="com.jtixchange.persistence.sqlmapdao.OrderSqlMapDao"/>
+
+  </context>
+
+</daoConfig>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//iBATIS.com//DTD SQL Map Config 2.0//EN" "http://www.ibatis.com/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+
+   <settings
+    cacheModelsEnabled="true"
+    enhancementEnabled="true"
+    maxSessions="64"
+    maxTransactions="8"
+    maxRequests="128"/>
+
+  <transactionManager type="JDBC">
+    <dataSource type="JNDI">
+       <property name="DBJndiContext" value="java:comp/env/jdbc/tixchangeDB"/>
+    </dataSource>
+  </transactionManager>
+
+  <sqlMap resource="com/jtixchange/persistence/sqlmapdao/sql/Account.xml"></sqlMap>
+  <sqlMap resource="com/jtixchange/persistence/sqlmapdao/sql/Category.xml"></sqlMap>
+  <sqlMap resource="com/jtixchange/persistence/sqlmapdao/sql/Product.xml"/>
+  <sqlMap resource="com/jtixchange/persistence/sqlmapdao/sql/Sequence.xml"/>
+  <sqlMap resource="com/jtixchange/persistence/sqlmapdao/sql/LineItem.xml"/>
+  <sqlMap resource="com/jtixchange/persistence/sqlmapdao/sql/Order.xml"/>
+  <sqlMap resource="com/jtixchange/persistence/sqlmapdao/sql/Item.xml"/>
+
+</sqlMapConfig>
