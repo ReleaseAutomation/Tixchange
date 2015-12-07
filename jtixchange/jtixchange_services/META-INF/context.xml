@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Context>
+	<Resource name="jdbc/tixchangeDB"
+		type="javax.sql.DataSource" auth="Container"
+		description="MySQL database for TIXCHANGE"
+ 		maxActive="100" maxIdle="30" maxWait="10000"
+		username="tcuser" password="quality"
+		driverClassName="com.mysql.jdbc.Driver"
+		url="jdbc:mysql://TIXCHANGE-HOST-DB:3306/tixchange"
+		factory="org.apache.tomcat.jdbc.pool.DataSourceFactory"
+		minEvictableIdleTimeMillis="60000"
+		timeBetweenEvictionRunsMillis="60000"
+		testOnBorrow="true" testOnReturn="false" testWhileIdle="true"
+		validationInterval="1800000" validationQuery="SELECT 1"/>
+</Context>
