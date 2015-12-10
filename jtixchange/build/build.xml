@@ -1,6 +1,7 @@
 <project name="jtixchange" default="assemble.all" basedir=".">
 
   <property file="build.properties"/>
+<property name="classpath" value="${jtix_base}\lib"/>
 
   <target name="clean" >
     <delete dir="${webapps}"/>
@@ -14,7 +15,20 @@
    	<mkdir dir="${webapps}/${webapp_svc_name}"/>
 	<mkdir dir="${webapps}/${webapp_svc_name}/WEB-INF/lib"/>
   </target>
-      	
+    
+	<!-- Classpath for the project -->	
+    <path id="master-classpath">
+      <fileset dir="${classpath}" includes="*.jar"/>
+	  <fileset dir="C:\demo\source\TIXCHANGE\tixchange_app\bin" includes="*.jar" />
+	  <fileset dir="C:\demo\source\TIXCHANGE\tixchange_app\lib" includes="*.jar" />
+    </path>
+
+	<target name="compile">
+        <javac includeantruntime="false" srcdir="${jtix_base}/src" destdir="${jtix_base}/classes">
+		<classpath refid="master-classpath"/>
+		</javac>
+    </target>	
+		
 	<target name="assemble.web" depends="prepare">
 		<copy todir="${webapps}/${webapp_web_name}">
 			<fileset dir="${jtix_base}/${webapp_web_name}"/>	
