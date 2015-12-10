@@ -19,8 +19,6 @@
 	<!-- Classpath for the project -->	
     <path id="master-classpath">
       <fileset dir="${classpath}" includes="*.jar"/>
-	  <fileset dir="C:\demo\source\TIXCHANGE\tixchange_app\bin" includes="*.jar" />
-	  <fileset dir="C:\demo\source\TIXCHANGE\tixchange_app\lib" includes="*.jar" />
     </path>
 
 	<target name="compile">
