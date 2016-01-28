@@ -12,6 +12,14 @@ import com.jtixchange.struts.ActionContext;
 import com.jtixchange.struts.BaseBean;
 import com.jtixchange.struts.BeanActionException;
 
+/**
+ * @author brian.dworak
+ *
+ */
+/**
+ * @author brian.dworak
+ *
+ */
 public class AccountBean extends BaseBean {
 
 	/* Constants */
@@ -47,7 +55,7 @@ public class AccountBean extends BaseBean {
 		langList.add("english");
 		langList.add("japanese");
 		langList.add("spanish");
-		langList.add("french");
+		langList.add("Vulcan");
 		
 
 		
