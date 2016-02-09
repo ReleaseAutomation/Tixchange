@@ -55,6 +55,7 @@ public class AccountBean extends BaseBean {
 		langList.add("english");
 		langList.add("japanese");
 		langList.add("spanish");
+		langList.add("italian");
 		
 		
 		
