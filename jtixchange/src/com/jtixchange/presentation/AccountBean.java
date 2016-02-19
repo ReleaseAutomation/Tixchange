@@ -49,7 +49,6 @@ public class AccountBean extends BaseBean {
 		langList.add("french");
 		langList.add("portuguese");
 		langList.add("spanish");
-		langList.add("texan");
 		
 		
 		LANGUAGE_LIST = Collections.unmodifiableList(langList);
