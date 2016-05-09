@@ -54,18 +54,11 @@ public class AccountBean extends BaseBean {
 		final List<String> langList = new ArrayList<String>();
 		langList.add("English");
 		langList.add("Spanish");
-		langList.add("Italian");
-		//langList.add("German");
-		//langList.add("Peruvian");
-		//langList.add("Portugese");
-		
-		
-		
-		
-		
-		
-		
-		
+		//langList.add("Italian");
+		// langList.add("German");
+		// langList.add("Peruvian");
+		// langList.add("Portugese");
+
 		LANGUAGE_LIST = Collections.unmodifiableList(langList);
 
 		final List<String> catList = new ArrayList<String>();
@@ -106,7 +99,7 @@ public class AccountBean extends BaseBean {
 			this.myList = AccountBean.catalogService.getProductListByCategory(this.account.getFavouriteCategoryId());
 			return "success";
 		} catch (final Exception e) {
-			throw new BeanActionException ("There was a problem updating your Account Information. Cause: "+e, e);
+			throw new BeanActionException("There was a problem updating your Account Information. Cause: " + e, e);
 		}
 	}
 
@@ -115,7 +108,7 @@ public class AccountBean extends BaseBean {
 			this.account = AccountBean.accountService.getAccount(this.account.getUsername());
 			return "success";
 		} catch (final Exception e) {
-			throw new BeanActionException ("There was a problem retrieving your Account Information. Cause: "+e, e);
+			throw new BeanActionException("There was a problem retrieving your Account Information. Cause: " + e, e);
 		}
 	}
 
@@ -155,7 +148,6 @@ public class AccountBean extends BaseBean {
 		return AccountBean.SIGNON_LIST;
 	}
 
-
 	public String getUsername() {
 		return this.account.getUsername();
 	}
@@ -177,7 +169,7 @@ public class AccountBean extends BaseBean {
 			this.repeatedPassword = null;
 			return "success";
 		} catch (final Exception e) {
-			throw new BeanActionException ("There was a problem creating your Account Information.  Cause: " + e, e);
+			throw new BeanActionException("There was a problem creating your Account Information.  Cause: " + e, e);
 		}
 	}
 
@@ -233,16 +225,19 @@ public class AccountBean extends BaseBean {
 		try {
 			if (!this.signOnType.equals(null)) {
 				if (this.signOnType.equals("Wildcard")) {
-					this.account = AccountBean.accountService.getAuthAccountWild(this.account.getUsername(), this.account.getPassword());
+					this.account = AccountBean.accountService.getAuthAccountWild(this.account.getUsername(),
+							this.account.getPassword());
 				} else {
-					this.account = AccountBean.accountService.getAuthAccount(this.account.getUsername(), this.account.getPassword());
+					this.account = AccountBean.accountService.getAuthAccount(this.account.getUsername(),
+							this.account.getPassword());
 				}
 			} else {
-				this.account = AccountBean.accountService.getAuthAccount(this.account.getUsername(), this.account.getPassword());
+				this.account = AccountBean.accountService.getAuthAccount(this.account.getUsername(),
+						this.account.getPassword());
 			}
 
 		} catch (final Exception e) {
-			throw new BeanActionException ("There was a problem updating your Account Information. Cause: "+e, e);
+			throw new BeanActionException("There was a problem updating your Account Information. Cause: " + e, e);
 		}
 
 		if ((this.account == null) || (this.account == null)) {
@@ -257,7 +252,7 @@ public class AccountBean extends BaseBean {
 		}
 	}
 
-	public String switchMyListPage () {
+	public String switchMyListPage() {
 		if ("next".equals(this.pageDirection)) {
 			this.myList.nextPage();
 		} else if ("previous".equals(this.pageDirection)) {
@@ -270,12 +265,15 @@ public class AccountBean extends BaseBean {
 	public void validate() {
 		final ActionContext ctx = ActionContext.getActionContext();
 		if (this.validation != null) {
-			if (AccountBean.VALIDATE_EDIT_ACCOUNT.equals(this.validation) || AccountBean.VALIDATE_NEW_ACCOUNT.equals(this.validation)) {
+			if (AccountBean.VALIDATE_EDIT_ACCOUNT.equals(this.validation)
+					|| AccountBean.VALIDATE_NEW_ACCOUNT.equals(this.validation)) {
 				if (AccountBean.VALIDATE_NEW_ACCOUNT.equals(this.validation)) {
 					this.account.setStatus("OK");
 					this.validateRequiredField(this.account.getUsername(), "User ID is required.");
-					if ((this.account.getPassword() == null) || (this.account.getPassword().length() < 1) || !this.account.getPassword().equals(this.repeatedPassword)) {
-						ctx.addSimpleError("Passwords did not match or were not provided.  Matching passwords are required.");
+					if ((this.account.getPassword() == null) || (this.account.getPassword().length() < 1)
+							|| !this.account.getPassword().equals(this.repeatedPassword)) {
+						ctx.addSimpleError(
+								"Passwords did not match or were not provided.  Matching passwords are required.");
 					}
 				}
 				if ((this.account.getPassword() != null) && (this.account.getPassword().length() > 0)) {
